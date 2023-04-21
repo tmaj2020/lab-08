@@ -31,7 +31,13 @@ def main(start_time: float, file: pathlib.Path, show: bool) -> None:
     # Plot
     plt.figure(figsize=(20,10))
     plt.subplot(221)
+    plt.suptitle(file)
+    
     # TODO: Plot the full sample as a subplot (make sure to include labels)
+    plt.plot(time, samples)
+    plt.xlabel("Time")
+    plt.ylabel("Amplitude")
+    
 
     """***********************SAMPLE SLICE PLOT*************************"""
     print("Analyzing slice at {}s".format(start_time))
@@ -44,8 +50,11 @@ def main(start_time: float, file: pathlib.Path, show: bool) -> None:
 
     # Plot
     plt.subplot(222)
+    
     # TODO: Plot the sample slice as a subplot (make sure to include labels)
-
+    plt.plot(time_slice, sample_slice)
+    plt.xlabel("Time")
+    plt.ylabel("Amplitude")
 
     """**********************SAMPLE SLICE FFT PLOT**********************"""
     n = slice_frame_size                            # n is the number of elements in the slice
@@ -64,6 +73,10 @@ def main(start_time: float, file: pathlib.Path, show: bool) -> None:
     # Plot
     plt.subplot(212)
     # TODO: Plot the frequency spectrum as a subplot (make sure to include labels)
+    plt.plot(frq, abs(sample_slice_fft))
+    plt.xlabel("Frequency") #Changed to frequency but this isn't reflected in the images since I mistyped as I wrote the code
+    plt.ylabel("Amplitude")
+    plt.title("Tone Window FFT")
 
     plt.suptitle(file)
     
